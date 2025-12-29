@@ -1,0 +1,27 @@
+#loader {
+    position: fixed;
+    inset: 0;
+    background: #020617;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#coreCanvas {
+    width: 320px;
+    height: 320px;
+}
+
+.boot-label {
+    margin-top: 24px;
+    font-size: 12px;
+    letter-spacing: 4px;
+    color: #cbd5f5;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+
+
