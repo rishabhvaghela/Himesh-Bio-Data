@@ -9,7 +9,7 @@ let particles = [];
 let frame = 0;
 
 /* CREATE PARTICLES */
-for (let i = 0; i < 140; i++) {
+for (let i = 0; i < 150; i++) {
     const angle = Math.random() * Math.PI * 2;
     const radius = 120 + Math.random() * 80;
 
@@ -33,8 +33,8 @@ function draw() {
     ctx.stroke();
 
     particles.forEach(p => {
-        p.x += (p.tx - p.x) * 0.04;
-        p.y += (p.ty - p.y) * 0.04;
+        p.x += (p.tx - p.x) * 0.03;
+        p.y += (p.ty - p.y) * 0.03;
         p.alpha = Math.min(p.alpha + 0.02, 1);
 
         ctx.fillStyle = `rgba(56,189,248,${p.alpha})`;
@@ -51,12 +51,12 @@ draw();
 window.addEventListener("load", () => {
     setTimeout(() => {
         document.querySelector(".boot-label").style.opacity = "1";
-    }, 1800);
+    }, 700);
 
     setTimeout(() => {
         const loader = document.getElementById("loader");
         loader.style.transition = "opacity 1.2s ease";
         loader.style.opacity = "0";
-        setTimeout(() => loader.remove(), 1200);
-    }, 3200);
+        setTimeout(() => loader.remove(), 900);
+    }, 1200);
 });
