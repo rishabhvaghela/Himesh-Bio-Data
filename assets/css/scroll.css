@@ -1,35 +1,56 @@
+/* ❌ REMOVE animation from section (prevents blinking issues) */
 #personal {
-    transform: translateX(-80px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-#personal.in-view {
     opacity: 1;
-    transform: translateX(0);
+    transform: none;
 }
 
-/* list items – reset state */
+
+/* ✅ HEADING animation (separate) */
+#personal span {
+    display: inline-block;
+    opacity: 0;
+    /* transform: translateY(-20px); */
+    transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+#personal.in-view span {
+    opacity: 1;
+    /* transform: translateY(0); */
+}
+
+
+/* ✅ LIST ITEMS (stable base state) */
 #personal li {
     opacity: 0;
-    transform: translateX(-30px);
-    transition: opacity 2s ease, transform 0.5s ease;
+    transition: opacity 0.6s ease, transform 2s ease;
 }
 
-/* list animate */
-#personal.in-view li {
+/* Direction */
+#personal li:nth-child(odd) {
+    transform: translateX(-100px);
+}
+
+#personal li:nth-child(even) {
+    transform: translateX(100px);
+}
+
+/* ✅ Animate individually */
+#personal li.in-view {
     opacity: 1;
     transform: translateX(0);
 }
+/* #personal li:nth-child(1) { transition-delay: 0.1s; }
+#personal li:nth-child(2) { transition-delay: 0.2s; }
+#personal li:nth-child(3) { transition-delay: 0.3s; }
+#personal li:nth-child(4) { transition-delay: 0.4s; }
+#personal li:nth-child(5) { transition-delay: 0.5s; }
+#personal li:nth-child(6) { transition-delay: 0.6s; }
+#personal li:nth-child(7) { transition-delay: 0.7s; }
+#personal li:nth-child(8) { transition-delay: 0.8s; }
+#personal li:nth-child(9) { transition-delay: 0.9s; } */
 
-#personal.in-view li:nth-child(1) { transition-delay: .1s}
-#personal.in-view li:nth-child(2) { transition-delay: .2s }
-#personal.in-view li:nth-child(3) { transition-delay: .3s }
-#personal.in-view li:nth-child(4) { transition-delay: .4s }
-#personal.in-view li:nth-child(5) { transition-delay: .5s }
-#personal.in-view li:nth-child(6) { transition-delay: .6s }
-#personal.in-view li:nth-child(7) { transition-delay: .7s }
-#personal.in-view li:nth-child(8) { transition-delay: .8s }
-#personal.in-view li:nth-child(9) { transition-delay: .9s }
+
+
 
 
 
