@@ -1,80 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================
-       SECTION OBSERVER
-    ========================= */
-
-    const sections = document.querySelectorAll(".component");
-
-    const sectionObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("in-view");
-                } else {
-                    entry.target.classList.remove("in-view");
-                }
-            });
-        },
-        {
-            threshold: 0.35
-        }
-    );
-
-    sections.forEach(section => sectionObserver.observe(section));
-
-
-
-    /* =========================
-       PHOTOS BOX OBSERVER
-    ========================= */
-
-    const boxes = document.querySelectorAll('#photos .box');
-
-    const boxObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("box-in-view");
-                } else {
-                    entry.target.classList.remove("box-in-view");
-                }
-            });
-        },
-        {
-            threshold: 0.35,
-            rootMargin: '0px 0px -60px 0px'
-        }
-    );
-
-    boxes.forEach(box => boxObserver.observe(box));
-
-});
-
-
-/* =========================
-   GLOBAL REVEAL OBSERVER
-========================= */
-
-const revealItems = document.querySelectorAll(
-    ".reveal-item, #photos .box"
-);
-
-const revealObserver = new IntersectionObserver(
-    (entries) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add("in-view");
             } else {
-                entry.target.classList.remove("in-view");
+                entry.target.classList.remove("in-view"); // optional
             }
         });
-    },
-    {
-        threshold: 0.25,
-        rootMargin: "0px 0px -80px 0px"
-    }
-);
+    }, {
+        threshold: 0.3,
+        rootMargin: "0px 0px -60px 0px"
+    });
 
-revealItems.forEach(item => revealObserver.observe(item));
+    // Observe everything that needs animation
+    const elements = document.querySelectorAll(
+        ".component, .reveal-item, #photos .box"
+    );
 
+    elements.forEach(el => observer.observe(el));
+
+});
