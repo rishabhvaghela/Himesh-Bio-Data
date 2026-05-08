@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://himesh-vaghela-bio-data.netlify.app/sitemap.xml
