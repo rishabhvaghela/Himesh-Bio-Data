@@ -423,6 +423,13 @@
         overflow-wrap: break-word;
     }
 
+    footer{
+    margin: auto;
+    text-align: center;
+    color: #ffffffbd;
+    font-size: 14px;
+    }
+
 }
 
 
