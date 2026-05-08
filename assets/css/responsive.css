@@ -132,10 +132,9 @@
         transition: 0.3s ease;
     }
 
-    .page a:hover,
-    .page a.active {
+    .page a:hover{
         opacity: 1;
-        color: #6cff4f;
+        /* color: #6cff4f; */
     }
 
     /* =========================
