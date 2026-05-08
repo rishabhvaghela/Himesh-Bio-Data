@@ -1,120 +1,566 @@
-/* ❌ REMOVE animation from section (prevents blinking issues) */
-#personal {
-    opacity: 1;
-    transform: none;
+/* =========================================================
+   PREMIUM SCROLL ANIMATIONS
+   PERSONAL + FAMILY + PHOTOS
+========================================================= */
+
+
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
+:root {
+
+    --reveal-speed: .9s;
+
+    --reveal-ease:
+        cubic-bezier(.22, .61, .36, 1);
+
+    --card-glow:
+        rgba(85, 255, 47, 0.12);
 }
 
 
-/* ✅ HEADING animation (separate) */
-#personal span {
-    display: inline-block;
+/* =========================================================
+   SECTION BASE
+========================================================= */
+
+#personal,
+#family,
+#photos {
+
+    position: relative;
+
+    opacity: 1;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+========================================================= */
+
+#personal span,
+#family span,
+#photos span {
+
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        12px 24px;
+
+    margin-bottom: 45px;
+
+    border-radius: 50px;
+
+    font-size: 32px;
+
+    letter-spacing: 1px;
+
+    color: white;
+
+    background:
+        rgba(255, 255, 255, 0.04);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.08);
+
+    backdrop-filter: blur(10px);
+
+    box-shadow:
+        inset 0 0 25px rgba(255, 255, 255, 0.03);
+
     opacity: 0;
-    /* transform: translateY(-20px); */
-    transition: opacity 0.2s ease, transform 0.1s ease;
+
+    transform:
+        translateY(50px)
+        scale(.94);
+
+    transition:
+        opacity .8s ease,
+        transform 1s var(--reveal-ease);
 }
 
-#personal.in-view span {
+
+/* HEADING ACTIVE */
+
+#personal.in-view span,
+#family.in-view span,
+#photos.in-view span {
+
     opacity: 1;
-    /* transform: translateY(0); */
+
+    transform:
+        translateY(0)
+        scale(1);
 }
 
 
-/* ✅ LIST ITEMS (stable base state) */
-#personal li {
+/* GLOW DOT */
+
+#personal span::before,
+#family span::before,
+#photos span::before {
+
+    content: "";
+
+    width: 12px;
+    height: 12px;
+
+    border-radius: 50%;
+
+    background:
+        #55ff2f;
+
+    box-shadow:
+        0 0 15px #55ff2f,
+        0 0 30px #55ff2f;
+}
+
+
+/* =========================================================
+   LIST CONTAINER
+========================================================= */
+
+#personal ul,
+#family ul {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(280px, 1fr));
+
+    gap: 28px;
+
+    margin-top: 50px;
+}
+
+
+/* =========================================================
+   PREMIUM CARDS
+========================================================= */
+
+#personal li,
+#family li {
+
+    position: relative;
+
+    list-style: none;
+
+    padding:
+        28px 32px;
+
+    min-height: 130px;
+
+    display: flex;
+
+    align-items: center;
+
+    line-height: 1.7;
+
+    font-size: 17px;
+
+    color:
+        rgba(255, 255, 255, 0.88);
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, 0.089),
+            rgba(255, 255, 255, 0.038)
+        );
+
+    border:
+        1px solid rgba(255, 255, 255, 0.082);
+
+    backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.22);
+
     opacity: 0;
-    transition: opacity 0.6s ease, transform 2s ease;
+
+    transition:
+        transform 1s var(--reveal-ease),
+        opacity .9s ease,
+        box-shadow .4s ease,
+        border-color .4s ease;
 }
 
-/* Direction */
-#personal li:nth-child(odd) {
-    transform: translateX(-100px);
+
+/* =========================================================
+   HOVER EFFECT
+========================================================= */
+
+#personal li:hover,
+#family li:hover {
+
+    transform:
+        translateY(-10px)
+        scale(1.02) !important;
+
+    border-color:
+        rgba(85, 255, 47, 0.25);
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.35),
+        0 0 25px var(--card-glow);
 }
 
-#personal li:nth-child(even) {
-    transform: translateX(100px);
+
+/* =========================================================
+   LIGHT EFFECT
+========================================================= */
+
+#personal li::before,
+#family li::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.08),
+            transparent
+        );
+
+    transform:
+        translateX(-120%);
+
+    transition:
+        1s ease;
 }
 
-/* ✅ Animate individually */
-#personal li.in-view {
+#personal li:hover::before,
+#family li:hover::before {
+
+    transform:
+        translateX(120%);
+}
+
+
+/* =========================================================
+   INITIAL REVEAL DIRECTIONS
+========================================================= */
+
+#personal li:nth-child(odd),
+#family li:nth-child(odd) {
+
+    transform:
+        translateX(-120px)
+        rotate(-3deg)
+        scale(.95);
+}
+
+#personal li:nth-child(even),
+#family li:nth-child(even) {
+
+    transform:
+        translateX(120px)
+        rotate(3deg)
+        scale(.95);
+}
+
+
+/* =========================================================
+   ACTIVE REVEAL
+========================================================= */
+
+#personal li.in-view,
+#family li.in-view {
+
     opacity: 1;
-    transform: translateX(0);
+
+    transform:
+        translateX(0)
+        rotate(0)
+        scale(1);
 }
-/* #personal li:nth-child(1) { transition-delay: 0.1s; }
-#personal li:nth-child(2) { transition-delay: 0.2s; }
-#personal li:nth-child(3) { transition-delay: 0.3s; }
-#personal li:nth-child(4) { transition-delay: 0.4s; }
-#personal li:nth-child(5) { transition-delay: 0.5s; }
-#personal li:nth-child(6) { transition-delay: 0.6s; }
-#personal li:nth-child(7) { transition-delay: 0.7s; }
-#personal li:nth-child(8) { transition-delay: 0.8s; }
-#personal li:nth-child(9) { transition-delay: 0.9s; } */
 
 
+/* =========================================================
+   STAGGER DELAYS
+========================================================= */
+
+#personal li:nth-child(1),
+#family li:nth-child(1) {
+    transition-delay: .05s;
+}
+
+#personal li:nth-child(2),
+#family li:nth-child(2) {
+    transition-delay: .12s;
+}
+
+#personal li:nth-child(3),
+#family li:nth-child(3) {
+    transition-delay: .18s;
+}
+
+#personal li:nth-child(4),
+#family li:nth-child(4) {
+    transition-delay: .24s;
+}
+
+#personal li:nth-child(5),
+#family li:nth-child(5) {
+    transition-delay: .30s;
+}
+
+#personal li:nth-child(6),
+#family li:nth-child(6) {
+    transition-delay: .36s;
+}
+
+#personal li:nth-child(7),
+#family li:nth-child(7) {
+    transition-delay: .42s;
+}
+
+#personal li:nth-child(8),
+#family li:nth-child(8) {
+    transition-delay: .48s;
+}
+
+#personal li:nth-child(9),
+#family li:nth-child(9) {
+    transition-delay: .54s;
+}
 
 
-
+/* =========================================================
+   FAMILY SECTION ENTRANCE
+========================================================= */
 
 #family {
-    transform: translateY(80px) scale(0.96);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    scroll-margin-top: 70px;
+
+    opacity: 0;
+
+    transform:
+        translateY(120px)
+        scale(.96);
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s var(--reveal-ease);
+
+    scroll-margin-top: 100px;
 }
 
 #family.in-view {
+
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+        translateY(0)
+        scale(1);
 }
 
 
+/* =========================================================
+   PHOTOS SECTION
+========================================================= */
+
 #photos {
+
     opacity: 0;
-    transform: scale(1.1);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+
+    transform:
+        scale(1.06);
+
+    transition:
+        opacity 1s ease,
+        transform 1.2s var(--reveal-ease);
 }
 
 #photos.in-view {
+
     opacity: 1;
-    transform: scale(1);
+
+    transform:
+        scale(1);
 }
 
 
+/* =========================================================
+   PHOTOS GRID
+========================================================= */
 
 #photos .main-box {
+
     opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+
+    transform:
+        translateY(60px);
+
+    transition:
+        opacity 1s ease,
+        transform 1s var(--reveal-ease);
 }
 
 #photos.in-view .main-box {
+
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 }
 
+
+/* =========================================================
+   PHOTO CARDS
+========================================================= */
 
 #photos .box {
+
     opacity: 0;
-    transform: translateY(40px) scale(0.9);
+
+    overflow: hidden;
+
+    transform:
+        translateY(60px)
+        scale(.9);
+
     transition:
-        opacity 0.6s ease,
-        transform 0.6s cubic-bezier(.22,.61,.36,1);
+        opacity .9s ease,
+        transform 1s var(--reveal-ease),
+        box-shadow .4s ease;
 }
+
+
+/* PHOTO ACTIVE */
 
 #photos .box.box-in-view {
+
     opacity: 1;
-    transform: translateY(0) scale(1);
+
+    transform:
+        translateY(0)
+        scale(1);
 }
 
 
-.reveal-item {
-    opacity: 0;
-    transform: translateY(40px);
+/* PHOTO HOVER */
+
+#photos .box:hover {
+
+    transform:
+        translateY(-12px)
+        scale(1.03);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.45),
+        0 0 30px rgba(85, 255, 47, 0.15);
+}
+
+
+/* PHOTO IMAGE */
+
+#photos .box img {
+
     transition:
-        opacity 0.6s ease,
-        transform 0.6s cubic-bezier(.22,.61,.36,1);
+        transform .8s ease,
+        filter .6s ease;
+}
+
+#photos .box:hover img {
+
+    transform:
+        scale(1.08);
+
+    filter:
+        brightness(1.08);
+}
+
+
+/* =========================================================
+   GENERIC REVEAL ITEM
+========================================================= */
+
+.reveal-item {
+
+    opacity: 0;
+
+    transform:
+        translateY(50px);
+
+    transition:
+        opacity .9s ease,
+        transform 1s var(--reveal-ease);
 }
 
 .reveal-item.in-view {
+
     opacity: 1;
-    transform: translateY(0);
+
+    transform:
+        translateY(0);
 }
 
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    #personal ul,
+    #family ul {
+
+        grid-template-columns: 1fr;
+    }
+
+    #personal span,
+    #family span,
+    #photos span {
+
+        font-size: 24px;
+    }
+
+    #personal li,
+    #family li {
+
+        min-height: auto;
+
+        font-size: 15px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    #personal span,
+    #family span,
+    #photos span {
+
+        width: 100%;
+
+        justify-content: center;
+
+        text-align: center;
+    }
+
+    #personal li,
+    #family li {
+
+        padding:
+            22px 20px;
+
+        border-radius: 22px;
+    }
+}
