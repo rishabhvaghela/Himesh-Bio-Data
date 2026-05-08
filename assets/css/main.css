@@ -373,3 +373,11 @@ body {
     transform: scale(90%);
 }
 
+
+footer {
+    grid-column: 2;
+    margin: 20px auto;
+    text-align: center;
+    color: #ffffffbd;
+    font-size: 14px;
+}
