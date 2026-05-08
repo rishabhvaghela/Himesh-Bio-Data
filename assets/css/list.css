@@ -31,11 +31,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.081);
+    background: rgba(255, 255, 255, 0.215);
      backdrop-filter: blur(5px);
      -webkit-backdrop-filter: blur(5px);
      filter: brightness(1.2);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.251) inset;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.21) inset;
      font-family: "Carter One", system-ui;
      padding: 20px;
 
