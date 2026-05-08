@@ -1,7 +1,5 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
-/* @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Rubik+Wet+Paint&display=swap'); */
-/* @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Koulen&family=Rubik+Wet+Paint&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Changa+One:ital@0;1&display=swap');
 
 * {
@@ -9,6 +7,10 @@
     padding: 0;
     box-sizing: border-box;
     font-weight: 600;
+}
+
+::-webkit-scrollbar{
+    display: none;
 }
 
 html {
@@ -19,7 +21,8 @@ html {
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #010310;
-    color: #7d9441;
+    /* color: #7d9441; */
+    color: #ffffff;
 }
 
 #myVideo {
@@ -28,8 +31,10 @@ body {
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-
+    opacity: 0.3;
 }
+
+
 
 /* sidebar */
 
@@ -91,11 +96,11 @@ body {
 .page a:hover {
     opacity: 1;
 }
-
+/* 
 .page a.active {
     color: #55ff2f;
     opacity: 1;
-}
+} */
 
 /* CENTER CONTENT */
 .container {
@@ -283,6 +288,7 @@ body {
     will-change: transform, opacity, filter;
     transition: opacity 0.6s ease, transform 0.8s cubic-bezier(.22, .61, .36, 1), filter 0.6s ease;
     transform-origin: top;
+    margin-top: 10px;
 }
 
 
