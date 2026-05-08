@@ -32,6 +32,7 @@ body {
     min-width: 100%;
     min-height: 100%;
     opacity: 0.3;
+    filter: brightness(0.5);
 }
 
 
